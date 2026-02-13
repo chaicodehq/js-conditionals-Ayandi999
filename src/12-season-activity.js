@@ -1,3 +1,5 @@
+//import { act } from "react";
+
 /**
  * 🗺️ WanderLust Travel Planner
  *
@@ -31,5 +33,25 @@
  * @returns {{ season: string, activity: string } | null}
  */
 export function getSeasonActivity(month, temperature) {
-  // Your code here
+  if (month>12 || month<1) return null; 
+  let season=''
+  if(month>=3 && month<=5) season='Spring'
+  else if(month>=6 && month<=8) season='Summer'
+  else if(month>=9 && month<=11) season='Autumn'
+  else season='Winter'
+  let activity=''
+  if(season=='Winter'){
+    if(temperature>=0) activity='ice skating'
+    else activity='skiing'
+  }else if(season=='Spring'){
+    if(temperature>20) activity='hiking'
+    else activity='museum visit'
+  }else if(season=='Summer'){
+    if(temperature>35) activity='swimming'
+    else activity='cycling'
+  }else{
+    if(temperature>15) activity='nature walk'
+    else activity='reading at a cafe'
+  }
+  return {season,activity};
 }

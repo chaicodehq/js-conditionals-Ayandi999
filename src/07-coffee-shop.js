@@ -31,5 +31,26 @@
  * @returns {number} Total price or -1 for invalid input
  */
 export function calculateCoffeePrice(size, type, extras = {}) {
-  // Your code here
+  // Edge cases
+  let sizeList=["small", "medium","large"]
+  let typeList=["regular", "latte", "cappuccino","mocha"]
+  if(!sizeList.includes(size) || !typeList.includes(type)) return -1;
+
+  let payableAmount=0
+  //assigning amount based on size
+  if(size==="small") payableAmount=3
+  else if(size==="medium") payableAmount=4
+  else payableAmount=5
+
+  //adding charges for toppings:
+  if(type==="latte") payableAmount+=1
+  else if(type==='cappuccino') payableAmount+=1.5
+  else if(type==='mocha') payableAmount+=2
+
+  //ading charges for optionalt extras:
+  if(extras.extraShot) payableAmount+=0.75
+  if(extras.whippedCream) payableAmount+=0.5
+
+  return payableAmount;
+
 }
